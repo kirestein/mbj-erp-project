@@ -6,11 +6,21 @@
 **Status:** 🔄 Em andamento
 
 #### Preparação QA
-- [ ] Configurar ambiente de testes local
-- [ ] Estudar documentação dos endpoints planejados
-- [ ] Preparar templates de teste para API REST
+- [x] Configurar ambiente de testes local
+- [x] Estudar documentação dos endpoints planejados
+- [x] Preparar templates de teste para API REST
 - [ ] Configurar Postman/Insomnia collections
 - [ ] Definir estratégia de testes com Mariana Alves
+
+#### ✅ Backend Analisado (Carlos)
+- [x] Estrutura base Fastify configurada
+- [x] Rota `GET /health-check` implementada
+- [x] Rota `POST /employees` implementada
+- [x] Rota `GET /employees` (teste básico)
+- [x] Configuração Cloudinary e PostgreSQL
+- [x] Validação de campos obrigatórios
+- [x] Upload de imagens (JPEG/PNG)
+- [x] Tratamento de erros básico
 
 ---
 
@@ -123,4 +133,58 @@
 
 **Última atualização:** 06/06/2025  
 **Próxima revisão:** Início da Sprint 1 (10/06)
+
+
+
+---
+
+## 🧪 Testes Iniciais - Validação do Backend
+
+### 📋 Checklist de Validação Imediata
+
+#### 🔍 Rota GET /health-check
+- [ ] Endpoint responde com status 200
+- [ ] Response contém `status: "ok"`
+- [ ] Response contém timestamp válido
+- [ ] Headers corretos (Content-Type: application/json)
+
+#### 🔍 Rota POST /employees
+**Cenários Positivos:**
+- [ ] Cadastro com dados válidos + imagem JPG
+- [ ] Cadastro com dados válidos + imagem PNG
+- [ ] Verificar persistência no banco
+- [ ] Verificar upload no Cloudinary
+- [ ] Response 201 Created com dados corretos
+
+**Cenários Negativos:**
+- [ ] Sem campo obrigatório (fullName)
+- [ ] Sem campo obrigatório (jobFunctions)
+- [ ] Sem arquivo de imagem
+- [ ] Formato de arquivo inválido (PDF, TXT)
+- [ ] Arquivo muito grande (> 10MB)
+
+**Validações Técnicas:**
+- [ ] Headers multipart/form-data aceitos
+- [ ] Logs detalhados funcionando
+- [ ] Tratamento de erro do Cloudinary
+- [ ] Tratamento de erro do PostgreSQL
+- [ ] Códigos de status corretos (400, 409, 500)
+
+#### 🔍 Rota GET /employees
+- [ ] Response básico funcionando
+- [ ] Estrutura para listagem futura
+
+### 🛠 Próximos Passos de Teste
+1. **Configurar ambiente local** - Instalar dependências
+2. **Criar .env de teste** - Configurar variáveis
+3. **Testar health-check** - Validar servidor funcionando
+4. **Testar POST /employees** - Cenários completos
+5. **Documentar resultados** - Atualizar tracking
+
+### 📝 Observações Técnicas
+- **Stack confirmada:** Fastify + PostgreSQL + Cloudinary + Puppeteer
+- **Validações implementadas:** Campos obrigatórios, tipos de arquivo
+- **Logs detalhados:** Facilitam debugging
+- **Error handling:** Códigos HTTP apropriados
+- **Multipart:** Configurado para uploads até 10MB
 
